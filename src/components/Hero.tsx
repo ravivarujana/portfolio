@@ -1,15 +1,16 @@
-import { ArrowRight, FileText } from 'lucide-react'
+import { ArrowDown, ArrowRight, MessageCircle } from 'lucide-react'
+import { motion } from 'motion/react'
 import { useState } from 'react'
-import { portfolio, socials } from '../data'
+import { portfolio, socials, whatsappUrl } from '../data'
 import { cn } from '../lib/cn'
 import { ArchDiagram } from './ArchDiagram'
 import { SocialIcon } from './SocialIcon'
-import { btn, LiveDot } from './ui'
+import { btn, LiveDot, stagger } from './ui'
 
-const { profile, metrics } = portfolio
+const { profile } = portfolio
 
 const tabs = [
-  { id: 'arch', label: 'architecture.svg' },
+  { id: 'arch', label: 'architecture' },
   { id: 'json', label: 'whoami.json' },
 ] as const
 
@@ -17,110 +18,109 @@ export function Hero() {
   const [tab, setTab] = useState<(typeof tabs)[number]['id']>('arch')
 
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden pb-12 pt-10 sm:pb-16 sm:pt-16 lg:pt-20">
-      <div aria-hidden className="focus-lines pointer-events-none absolute inset-0" />
-      <div aria-hidden className="screentone pointer-events-none absolute -left-10 top-24 h-64 w-64 rotate-6 [mask-image:radial-gradient(circle,#000_30%,transparent_70%)]" />
-      <p
-        aria-hidden
-        lang="ja"
-        className="pointer-events-none absolute right-3 top-24 hidden font-display text-[22px] tracking-[0.25em] text-ink-3/60 [writing-mode:vertical-rl] 2xl:block"
-      >
-        バックエンド・エンジニア
-      </p>
-
-      <div className="wrap relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-        <div>
-          {/* speech bubble */}
-          <p className="relative inline-flex max-w-full items-center gap-2.5 rounded-[18px] border-2 border-edge bg-surface px-3.5 py-1.5 font-mono text-[12px] text-ink sm:text-[13px]">
+    <section aria-labelledby="hero-title" className="relative pt-14 sm:pt-24">
+      <div className="wrap grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        <motion.div variants={stagger.parent} initial="hidden" animate="show">
+          <motion.p variants={stagger.child} className="label flex items-center gap-2">
             <LiveDot />
-            <span className="truncate">
-              {profile.currentTitle} @ {profile.currentCompany} · {profile.location.split(',')[0]}
-            </span>
-            <span
-              aria-hidden
-              className="absolute -bottom-[9px] left-6 size-4 rotate-45 border-b-2 border-r-2 border-edge bg-surface"
-            />
-          </p>
-          <h1 id="hero-title" className="mt-7 font-display text-[clamp(42px,10.5vw,88px)] leading-[1.02] tracking-[-0.01em] sm:mt-8">
+            {profile.currentTitle} at {profile.currentCompany} · {profile.location.split(',')[0]}
+          </motion.p>
+          <motion.h1
+            variants={stagger.child}
+            id="hero-title"
+            className="mt-5 text-[clamp(38px,7vw,60px)] font-semibold leading-[1.02] tracking-[-0.045em]"
+          >
             {profile.name}
-          </h1>
-          <p className="mt-4 text-[clamp(20px,2.6vw,28px)] font-semibold tracking-[-0.015em] text-ink-2">
-            {profile.rolePrefix}{' '}
-            <span className="relative isolate whitespace-nowrap text-ink">
-              <span aria-hidden className="absolute inset-x-[-4px] bottom-[0.08em] -z-10 h-[0.42em] -skew-x-6 bg-mark/40" />
-              {profile.role}
-            </span>
-          </p>
-          <p className="mt-5 max-w-[56ch] text-[17px] text-ink-2 sm:mt-6">{profile.intro}</p>
+          </motion.h1>
+          <motion.p variants={stagger.child} className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-2 sm:text-lg">
+            {profile.intro}
+          </motion.p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" className={cn(btn.primary, 'max-sm:flex-1')}>
-              Contact me <ArrowRight className="size-4" aria-hidden />
+          <motion.div variants={stagger.child} className="mt-8 flex flex-wrap gap-2.5">
+            <a href="#contact" className={cn(btn.primary, 'group max-sm:flex-1')}>
+              Get in touch
+              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden />
             </a>
-            {socials
-              .filter((s) => s.hero)
-              .map((s) => (
-                <a key={s.id} href={s.url} target="_blank" rel="noopener" className={cn(btn.ghost, 'max-sm:flex-1')}>
-                  <SocialIcon id={s.id} className="size-4" /> {s.label}
-                </a>
-              ))}
             {profile.resumeUrl && (
-              <a href={profile.resumeUrl} target="_blank" rel="noopener" className={cn(btn.ghost, 'max-sm:flex-1')}>
-                <FileText className="size-4" aria-hidden /> Resume
+              <a href={profile.resumeUrl} download className={cn(btn.ghost, 'group max-sm:flex-1')}>
+                Resume
+                <ArrowDown className="size-4 transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden />
               </a>
             )}
-          </div>
-        </div>
+            {whatsappUrl && (
+              <a href={whatsappUrl} target="_blank" rel="noopener" className={cn(btn.ghost, 'max-sm:w-full')}>
+                <MessageCircle className="size-4 text-live" aria-hidden />
+                WhatsApp
+              </a>
+            )}
+          </motion.div>
 
-        <figure className="panel w-full max-w-[560px] overflow-hidden lg:max-w-none">
-          <div role="tablist" aria-label="Hero panel" className="flex items-stretch border-b-2 border-edge bg-ink">
-            {tabs.map((t) => (
-              <button
-                key={t.id}
-                role="tab"
-                id={`tab-${t.id}`}
-                aria-selected={tab === t.id}
-                aria-controls={`panel-${t.id}`}
-                onClick={() => setTab(t.id)}
-                className="min-h-10 border-r-2 border-edge px-3.5 font-mono text-[12px] text-bg/70 transition-colors hover:text-bg aria-selected:bg-surface aria-selected:text-ink"
-              >
-                {t.label}
-              </button>
+          <motion.ul variants={stagger.child} aria-label="Profiles" className="mt-7 flex items-center gap-1">
+            {socials.map((s) => (
+              <li key={s.id}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={s.label}
+                  className="grid size-10 place-items-center rounded-full text-ink-3 transition-colors hover:bg-bg-2 hover:text-ink"
+                >
+                  <SocialIcon id={s.id} className="size-[17px]" />
+                </a>
+              </li>
             ))}
+          </motion.ul>
+        </motion.div>
+
+        <motion.figure
+          initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+          className="w-full max-w-[540px] overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_-12px_rgb(0_0_0/0.12)] lg:max-w-none"
+        >
+          <div className="flex items-center justify-between gap-3 border-b border-line px-3 py-2.5">
+            <div role="tablist" aria-label="Hero panel" className="relative flex rounded-full bg-bg-2 p-0.5">
+              {tabs.map((t) => (
+                <button
+                  key={t.id}
+                  role="tab"
+                  id={`tab-${t.id}`}
+                  aria-selected={tab === t.id}
+                  aria-controls={`panel-${t.id}`}
+                  onClick={() => setTab(t.id)}
+                  className="relative isolate min-h-8 rounded-full px-3 font-mono text-[12px] text-ink-3 transition-colors aria-selected:text-ink"
+                >
+                  {tab === t.id && (
+                    <motion.span
+                      layoutId="hero-tab"
+                      className="absolute inset-0 -z-10 rounded-full border border-line bg-surface shadow-sm"
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
+                    />
+                  )}
+                  {t.label}
+                </button>
+              ))}
+            </div>
+            <span className="label hidden sm:block">fig. 01</span>
           </div>
 
-          <div className="p-4 sm:p-5">
+          <div className="dot-grid p-4 sm:p-6">
             {tab === 'arch' ? (
               <div role="tabpanel" id="panel-arch" aria-labelledby="tab-arch">
                 <ArchDiagram />
-                <figcaption className="mt-4 border-t-2 border-dashed border-line-2 pt-3 text-[13.5px] leading-normal text-ink-2">
-                  Socket.IO across multiple Node.js instances, kept in sync by a Redis adapter. No sticky sessions, no dropped connections.
-                </figcaption>
               </div>
             ) : (
-              <div role="tabpanel" id="panel-json" aria-labelledby="tab-json">
+              <div role="tabpanel" id="panel-json" aria-labelledby="tab-json" className="rounded-lg border border-line bg-surface p-4">
                 <WhoAmI />
               </div>
             )}
           </div>
-        </figure>
-      </div>
-
-      <div className="wrap relative">
-        <dl className="mt-14 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-4 lg:grid-cols-4">
-          {metrics.map((m, i) => (
-            <div key={m.label} className={cn('panel relative flex flex-col overflow-hidden p-4 sm:p-5', i === 0 && 'bg-accent text-accent-ink')}>
-              {i === 0 && <span aria-hidden className="screentone absolute inset-0 opacity-40 [--color-tone:rgb(255_255_255/0.35)]" />}
-              <dt className={cn('label relative order-1', i === 0 && 'text-accent-ink/85')}>{m.label}</dt>
-              <dd className="relative order-2 mt-3 font-display text-[clamp(32px,4.2vw,50px)] leading-none">
-                {m.value}
-                <span className={i === 0 ? '' : 'text-accent'}>{m.suffix.replace(/\s.*/, '')}</span>
-                {m.suffix.includes(' ') && <span className="ml-1.5 font-sans text-[0.36em] font-semibold">{m.suffix.split(' ')[1]}</span>}
-              </dd>
-              <dd className={cn('relative order-3 mt-3 text-[13px] leading-snug sm:text-sm', i === 0 ? 'text-accent-ink/90' : 'text-ink-2')}>{m.note}</dd>
-            </div>
-          ))}
-        </dl>
+          <figcaption className="border-t border-line px-4 py-3 text-[13px] leading-normal text-ink-3 sm:px-5">
+            {tab === 'arch'
+              ? 'Socket.IO across multiple Node.js instances, kept in sync by a Redis adapter. No sticky sessions.'
+              : 'The short version.'}
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   )
@@ -134,18 +134,17 @@ function WhoAmI() {
     current: `${profile.currentTitle} @ ${profile.currentCompany}`,
     focus: profile.focus,
     learning: portfolio.learning.tracks.map((t) => t.tags[0]),
-    location: `${profile.location} (${profile.timezone})`,
+    location: profile.location,
     open_to: profile.openTo,
   }
   const keys = Object.keys(obj)
   return (
-    <pre className="whitespace-pre-wrap break-words font-mono text-[12.5px] leading-[1.75] sm:text-[13px]">
+    <pre className="whitespace-pre-wrap break-words font-mono text-[12.5px] leading-[1.8]">
       <code>
         <span className="text-ink-3">{'{'}</span>
         {'\n'}
         {keys.map((k, i) => {
           const v = obj[k]
-          const comma = i < keys.length - 1 ? ',' : ''
           return (
             <span key={k}>
               {'  '}
@@ -165,7 +164,7 @@ function WhoAmI() {
               ) : (
                 <span className="text-accent">"{v}"</span>
               )}
-              <span className="text-ink-3">{comma}</span>
+              <span className="text-ink-3">{i < keys.length - 1 ? ',' : ''}</span>
               {'\n'}
             </span>
           )

@@ -6,18 +6,16 @@
     <title>Ravi Varujana — Backend-focused Full-Stack Engineer</title>
     <meta name="description" content="Full-Stack Software Engineer with 4.5+ years in Node.js/NestJS microservices, real-time infrastructure, API design, PostgreSQL and Redis. Based in Bangalore, India." />
     <meta name="author" content="Ravi Varujana" />
-    <meta name="theme-color" content="#f4f2fb" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#12112a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <script>
-      // Set palette + light/dark before first paint to avoid a flash. Keep in sync with src/lib/themes.ts.
+      // Set light/dark before first paint to avoid a flash.
       (function () {
-        var t, p
-        try { t = localStorage.getItem('theme'); p = localStorage.getItem('palette') } catch (e) {}
+        var t
+        try { t = localStorage.getItem('theme') } catch (e) {}
         if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        if (['dusk', 'ghibli', 'tokyo', 'sumi'].indexOf(p) < 0) p = 'dusk'
         document.documentElement.dataset.theme = t
-        document.documentElement.dataset.palette = p
       })()
     </script>
     <meta name="format-detection" content="telephone=no" />

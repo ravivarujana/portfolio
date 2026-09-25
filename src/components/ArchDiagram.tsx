@@ -44,10 +44,10 @@ const packets: [string, number, number, boolean, boolean][] = [
 ]
 
 const nodeStyle = {
-  default: { rect: 'fill-surface stroke-edge [stroke-width:1.5]', text: 'fill-ink' },
-  muted: { rect: 'fill-bg stroke-ink-3 [stroke-dasharray:4_3]', text: 'fill-ink-2' },
-  strong: { rect: 'fill-ink stroke-edge', text: 'fill-bg' },
-  accent: { rect: 'fill-accent stroke-edge [stroke-width:1.5]', text: 'fill-accent-ink' },
+  default: { rect: 'fill-surface stroke-line-2', text: 'fill-ink-2' },
+  muted: { rect: 'fill-bg-2 stroke-line-2 [stroke-dasharray:3_3]', text: 'fill-ink-3' },
+  strong: { rect: 'fill-surface stroke-ink-3', text: 'fill-ink' },
+  accent: { rect: 'fill-accent-soft stroke-accent', text: 'fill-accent' },
 }
 
 export function ArchDiagram() {
@@ -71,10 +71,10 @@ export function ArchDiagram() {
       </desc>
       <defs>
         <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M0 0 L8 4 L0 8 z" className="fill-ink-3" />
+          <path d="M0 0 L8 4 L0 8 z" className="fill-line-2" />
         </marker>
       </defs>
-      <g className="fill-none stroke-ink-3" strokeWidth={1.4}>
+      <g className="fill-none stroke-line-2" strokeWidth={1.2}>
         {edges.map(([id, d]) => (
           <path key={id} id={id} d={d} markerEnd={id === 'e-db' || id === 'e-q' ? 'url(#arrow)' : undefined} />
         ))}
@@ -84,7 +84,7 @@ export function ArchDiagram() {
           const s = nodeStyle[n.kind ?? 'default']
           return (
             <g key={i}>
-              <rect x={n.x} y={n.y} width={n.w} height={n.h} rx={4} className={s.rect} />
+              <rect x={n.x} y={n.y} width={n.w} height={n.h} rx={6} className={s.rect} />
               <text x={n.x + n.w / 2} y={n.y + n.h / 2} textAnchor="middle" dominantBaseline="middle" className={s.text}>
                 {n.label}
               </text>
@@ -95,7 +95,7 @@ export function ArchDiagram() {
       {!reduce && (
         <g>
           {packets.map(([edge, dur, begin, reverse, accent], i) => (
-            <circle key={i} r={2.6} className={accent ? 'fill-accent' : 'fill-ink'} stroke="var(--color-surface)" strokeWidth={1}>
+            <circle key={i} r={2.6} className={accent ? 'fill-accent' : 'fill-ink-2'}>
               <animateMotion
                 dur={`${dur}s`}
                 begin={`-${begin}s`}

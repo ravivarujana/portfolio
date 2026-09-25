@@ -2,7 +2,10 @@ import { useCallback, useEffect, useState } from 'react'
 
 const PREFIX = '#work/'
 
-/** Keeps the open case study in the URL (#work/<id>) so each one can be linked directly. */
+/**
+ * Keeps the case study popup in the URL so it can be linked directly:
+ * #work/<id> opens it with that study selected, #work/all opens the full list.
+ */
 export function useCaseHash(validIds: string[]) {
   const read = useCallback(() => {
     const hash = window.location.hash

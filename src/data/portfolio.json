@@ -14,7 +14,7 @@
     "location": "Bangalore, India",
     "timezone": "IST · UTC+5:30",
     "yearsOfExperience": "4.5+",
-    "intro": "I build the backend that production depends on: Node.js and NestJS microservices, real-time infrastructure and API design, with hands-on ReactJS on the frontend. Experience across iGaming, fintech and enterprise SaaS. Currently extending that stack into AI/ML.",
+    "intro": "Backend-focused full-stack engineer with 4.5+ years building production systems in Node.js and NestJS: microservices, real-time infrastructure and API design, with hands-on ReactJS on the frontend. Currently extending that stack into AI/ML.",
     "focus": [
       "Node.js",
       "NestJS",
@@ -26,7 +26,11 @@
     "openTo": "SDE-2 · Backend · Full-Stack roles",
     "email": "varujana.ravi@gmail.com",
     "phone": "",
-    "resumeUrl": ""
+    "whatsapp": {
+      "number": "918269745658",
+      "message": "Hi Ravi, I came across your portfolio and would like to connect."
+    },
+    "resumeUrl": "/ravi-varujana-resume.pdf"
   },
   "socials": [
     {
@@ -52,32 +56,6 @@
       "label": "Instagram",
       "url": "",
       "hero": false
-    }
-  ],
-  "metrics": [
-    {
-      "label": "API response time",
-      "value": "70",
-      "suffix": "%+",
-      "note": "faster via PostgreSQL query tuning & indexing"
-    },
-    {
-      "label": "Sticky sessions",
-      "value": "0",
-      "suffix": "",
-      "note": "Socket.IO scaled horizontally via Redis adapter"
-    },
-    {
-      "label": "Reward types",
-      "value": "5",
-      "suffix": "+",
-      "note": "unified in one extensible bonus engine"
-    },
-    {
-      "label": "In production",
-      "value": "4.5",
-      "suffix": "+ yrs",
-      "note": "iGaming, fintech & enterprise SaaS"
     }
   ],
   "about": {
@@ -116,13 +94,13 @@
       "current": true,
       "points": [
         "Engineered backend services for a production iGaming platform spanning casino, sportsbook and real-time multiplayer features across a **microservices** architecture with independently deployable services.",
+        "Reduced API response times by **70%+** through PostgreSQL query tuning and advanced indexing strategies.",
+        "Scaled **Socket.IO** across multiple Node.js instances using a **Redis adapter**, without sticky sessions or dropped connections.",
         "Built a server-side **Responsible Gambling** enforcement layer intercepting gameplay and deposit actions to apply configurable bet limits, loss limits, session time caps and self-exclusion.",
         "Implemented a **multi-level KYC pipeline using Veriff APIs** with a structured admin approval and escalation workflow.",
         "Integrated **Layer1** crypto protocol for multi-currency deposits and withdrawals, with scheduled exchange-rate synchronization that eliminated manual reconciliation.",
         "Designed a bonus engine consolidating **5+ reward types** into a single extensible workflow, powering automated VIP tier progression.",
-        "Replaced ad-hoc scripts with a **Bull (Redis)** queue worker service with retry logic, Bull Board visibility and independent deploys.",
-        "Scaled **Socket.IO** across multiple Node.js instances using a **Redis adapter**, without sticky sessions or dropped connections.",
-        "Reduced API response times by **70%+** through PostgreSQL query tuning and advanced indexing strategies."
+        "Replaced ad-hoc scripts with a **Bull (Redis)** queue worker service with retry logic, Bull Board visibility and independent deploys."
       ],
       "stack": [
         "Node.js",
@@ -133,7 +111,8 @@
         "Socket.IO",
         "Veriff",
         "Layer1"
-      ]
+      ],
+      "visiblePoints": 4
     },
     {
       "company": "Qodic Technosoft",
@@ -178,6 +157,7 @@
       ]
     }
   ],
+  "caseStudiesPreview": 3,
   "caseStudies": [
     {
       "id": "postgres-performance",
@@ -586,8 +566,11 @@
     "photos": []
   },
   "contact": {
-    "title": "Building something on Node.js, real-time or PostgreSQL?",
-    "highlight": "Let's talk.",
-    "note": "Open to SDE-2, backend and full-stack roles. The fastest way to reach me is email."
+    "title": "Let's build something.",
+    "note": "Open to SDE-2, backend and full-stack roles. Send a message and I'll reply within a day or two.",
+    "form": {
+      "endpoint": "/api/contact",
+      "turnstileSiteKey": ""
+    }
   }
 }

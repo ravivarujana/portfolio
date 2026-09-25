@@ -1,43 +1,98 @@
+import { ChevronDown } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
+import { useState } from 'react'
 import { portfolio } from '../data'
 import { Rich } from '../lib/rich'
-import { Chips, LiveDot, Reveal, Section } from './ui'
 import { sectionIndex } from './nav'
+import { Chips, dimSiblings, LiveDot, Reveal, Section } from './ui'
+
+type Job = (typeof portfolio.experience)[number]
 
 export function Experience() {
   return (
-    <Section id="experience" index={sectionIndex('experience')} name="experience" jp="経歴" title="Three teams, one through-line: systems that run in production.">
-      <ol>
+    <Section id="experience" index={sectionIndex('experience')} name="Experience" title="Where I've worked.">
+      <ol className={dimSiblings}>
         {portfolio.experience.map((job) => (
-          <li key={job.company} className="border-t-2 border-edge last:border-b-2">
-            <Reveal className="grid gap-3 py-8 sm:py-9 md:grid-cols-[200px_1fr] md:gap-12">
-              <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 font-mono text-[13px] md:block">
-                <p className="text-ink">
-                  {job.start} — {job.end}
-                </p>
-                <p className="text-ink-3 md:mt-1">{job.location}</p>
-                {job.current && (
-                  <span className="inline-flex items-center gap-2 rounded-full border-2 border-edge bg-surface px-2.5 py-0.5 text-xs text-ink md:mt-3.5">
-                    <LiveDot /> Current
-                  </span>
-                )}
-              </div>
-              <div>
-                <h3 className="font-display text-2xl leading-tight sm:text-[30px]">{job.company}</h3>
-                <p className="mt-1.5 font-semibold text-accent">{job.role}</p>
-                <ul className="mt-5 grid gap-3">
-                  {job.points.map((p) => (
-                    <li key={p} className="relative pl-5.5 text-[15.5px] text-ink-2 sm:text-base">
-                      <span aria-hidden className="absolute left-0.5 top-[0.8em] h-px w-2 bg-accent" />
-                      <Rich text={p} />
-                    </li>
-                  ))}
-                </ul>
-                <Chips items={job.stack} className="mt-5" />
-              </div>
+          <li key={job.company} className="border-t border-line last:border-b">
+            <Reveal>
+              <Role job={job} />
             </Reveal>
           </li>
         ))}
       </ol>
     </Section>
+  )
+}
+
+function Role({ job }: { job: Job }) {
+  const [expanded, setExpanded] = useState(false)
+  const limit = job.visiblePoints ?? job.points.length
+  const shown = job.points.slice(0, limit)
+  const hidden = job.points.slice(limit)
+  const id = `more-${job.company.replace(/\W+/g, '-').toLowerCase()}`
+
+  return (
+    <div className="grid gap-3 py-8 md:grid-cols-[180px_1fr] md:gap-10">
+      <div className="label flex flex-wrap items-center gap-x-3 gap-y-1 md:block md:pt-1">
+        <p className="text-ink-2">
+          {job.start} — {job.end}
+        </p>
+        <p className="md:mt-1">{job.location}</p>
+        {job.current && (
+          <p className="flex items-center gap-2 text-live md:mt-3">
+            <LiveDot /> current
+          </p>
+        )}
+      </div>
+      <div>
+        <h3 className="text-[19px] font-semibold tracking-[-0.015em]">
+          {job.company}
+          <span className="font-normal text-ink-3"> · {job.role}</span>
+        </h3>
+        <ul className="mt-4 grid gap-2.5">
+          {shown.map((p) => (
+            <Point key={p} text={p} />
+          ))}
+        </ul>
+        <AnimatePresence initial={false}>
+          {expanded && (
+            <motion.ul
+              id={id}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="grid gap-2.5 overflow-hidden pt-2.5"
+            >
+              {hidden.map((p) => (
+                <Point key={p} text={p} />
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+        {hidden.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            aria-expanded={expanded}
+            aria-controls={id}
+            className="mt-3 inline-flex min-h-9 items-center gap-1 text-[14px] text-ink-3 transition-colors hover:text-ink"
+          >
+            {expanded ? 'Show less' : `Show ${hidden.length} more`}
+            <ChevronDown className={`size-4 transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`} aria-hidden />
+          </button>
+        )}
+        <Chips items={job.stack} className="mt-5" />
+      </div>
+    </div>
+  )
+}
+
+function Point({ text }: { text: string }) {
+  return (
+    <li className="relative pl-4 text-[15.5px] leading-relaxed text-ink-2">
+      <span aria-hidden className="absolute left-0 top-[0.72em] size-1 rounded-full bg-ink-3/60" />
+      <Rich text={text} />
+    </li>
   )
 }

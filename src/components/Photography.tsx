@@ -16,17 +16,17 @@ export function Photography() {
   if (photos.length === 0) return null
 
   return (
-    <Section id="photos" index={sectionIndex('photos')} name="photography" jp="写真" title={photography.title} sub={photography.intro}>
+    <Section id="photos" index={sectionIndex('photos')} name="Photography" title={photography.title} sub={photography.intro}>
       <div className="columns-1 gap-4 min-[480px]:columns-2 lg:columns-3">
         {photos.map((p, i) => (
           <Reveal key={p.src} delay={(i % 3) * 0.05} className="mb-4 break-inside-avoid">
-            <figure className="panel group p-2">
+            <figure className="group">
               <button
                 type="button"
                 onClick={() => setOpenIndex(i)}
                 aria-haspopup="dialog"
                 aria-label={`View photo: ${p.alt}`}
-                className="block w-full overflow-hidden rounded-[2px] bg-bg-2"
+                className="block w-full overflow-hidden rounded-xl bg-bg-2"
               >
                 <img
                   src={photoUrl(p.src, 800)}
@@ -37,10 +37,10 @@ export function Photography() {
                   alt={p.alt}
                   loading="lazy"
                   decoding="async"
-                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                 />
               </button>
-              <PhotoMeta photo={p} className="px-1 pb-0.5 pt-2" />
+              <PhotoMeta photo={p} className="px-0.5 pt-2.5" />
             </figure>
           </Reveal>
         ))}
@@ -64,7 +64,7 @@ function PhotoMeta({ photo, className }: { photo: Photo; className?: string }) {
   if (!photo.caption && !meta) return null
   return (
     <figcaption className={className}>
-      {photo.caption && <p className="text-sm font-semibold leading-snug">{photo.caption}</p>}
+      {photo.caption && <p className="text-sm font-medium leading-snug">{photo.caption}</p>}
       {meta && <p className="mt-0.5 font-mono text-[11.5px] text-ink-3">{meta}</p>}
     </figcaption>
   )
@@ -90,7 +90,7 @@ function Lightbox({ index, onIndex }: { index: number | null; onIndex: (i: numbe
   }
 
   const ctrl =
-    'grid size-11 place-items-center rounded-[4px] border-2 border-white/70 bg-black/40 text-white transition-colors hover:bg-white hover:text-black'
+    'grid size-11 place-items-center rounded-full bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20'
 
   return (
     <Dialog.Root open={photo !== null} onOpenChange={(o) => !o && onIndex(null)}>

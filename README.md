@@ -1,6 +1,6 @@
 # Ravi Varujana — Portfolio
 
-React 19 + TypeScript + Vite + Tailwind CSS v4. UI: Radix Dialog (case studies), cmdk (⌘K / Ctrl K command menu), Motion (scroll reveals), lucide-react (icons).
+React 19 + TypeScript + Vite + Tailwind CSS v4. UI: Radix Dialog (case studies, photo viewer), cmdk (⌘K / Ctrl K command menu), Motion (animations), lucide-react (icons), Geist fonts.
 
 ```bash
 npm install
@@ -9,7 +9,9 @@ npm run build     # static output in dist/
 npm run preview   # serve the production build
 ```
 
-Deploy `dist/` to any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages). No server routes are needed; case studies use hash links (`/#work/<id>`).
+Deploy to **Cloudflare Pages** (build command `npm run build`, output `dist`). The contact form's backend lives in `functions/api/contact.ts`, which Pages deploys automatically. On other static hosts the site works, but the form falls back to "email me directly".
+
+The previous anime-style version is saved in `archive/anime-theme-2026-09-25.tar.gz`.
 
 ## Editing content
 
@@ -17,16 +19,15 @@ All content lives in **`src/data/portfolio.json`**. Types are in `src/data/index
 
 | Key | What it drives |
 | --- | --- |
-| `profile` | Hero, whoami.json tab, contact. Set `resumeUrl` (e.g. `/resume.pdf` in `public/`) to show Resume buttons. Set `phone` to show it in Contact. |
+| `profile` | Hero, whoami.json tab, contact. `resumeUrl` points at `public/ravi-varujana-resume.pdf`; replace that file to update the resume. `whatsapp.number` (digits with country code) and `whatsapp.message` (pre-filled text) drive the WhatsApp buttons; empty number hides them. |
 | `socials` | Social links. Only entries with a `url` are shown (Contact, footer, ⌘K). `"hero": true` also puts one in the hero. Supported `id`s: `github`, `linkedin`, `x`, `instagram`, `leetcode`, `medium`, `devto`, `blog`, `youtube`, `website`. |
 | `photography` | The photo gallery. Hidden (and left out of the nav) until `photos` has entries. See below. |
-| `metrics` | The four headline numbers under the hero. |
 | `about` | About paragraphs and the four focus areas. |
-| `experience` | Timeline. Wrap text in `**double asterisks**` to bold it. |
-| `caseStudies` | Cards and their pop-up write-ups (see below). |
+| `experience` | Timeline. Wrap text in `**double asterisks**` to bold it. `visiblePoints` shows only the first N bullets with a "Show more" toggle. |
+| `caseStudies` | Case studies. The first `caseStudiesPreview` (default 3) show as cards; all of them are in the "view all" popup (list + detail on tablet/desktop, accordions on phones). Order matters: put your strongest first. |
 | `skills` | Toolkit rows. Items listed in `key` are highlighted. |
 | `learning` | The AI/ML section. Each track is marked "learning". |
-| `contact` | Contact heading and note. |
+| `contact` | Contact heading, note, and `form` settings (endpoint and Turnstile site key). |
 
 ### Writing up a case study
 
@@ -60,13 +61,27 @@ Set `"featured": true` and a `metric` to give a case study the wide card with th
 
 An Instagram link under the gallery appears automatically when the `instagram` social has a URL.
 
+## Contact form setup (Cloudflare Pages)
+
+The form posts to `/api/contact` (`functions/api/contact.ts`), which checks the spam token and emails you the message with Reply-To set to the sender.
+
+1. **Email delivery:** create a free account at resend.com and an API key. Without your own domain verified, Resend's test sender (`onboarding@resend.dev`) can only deliver to the email you signed up with, which is fine for a personal contact form.
+2. **Turnstile:** Cloudflare dashboard → Turnstile → Add widget → add your site's domain (and `localhost` for testing). You get a **site key** (public) and a **secret key**.
+3. Put the site key in `contact.form.turnstileSiteKey` in `portfolio.json`.
+4. In Pages → Settings → Variables and Secrets, add:
+   - `RESEND_API_KEY`: your Resend key
+   - `CONTACT_TO`: the inbox that should receive messages
+   - `TURNSTILE_SECRET_KEY`: the Turnstile secret
+   - `CONTACT_FROM` (optional): e.g. `Ravi <hello@yourdomain.com>` once you verify a domain in Resend
+5. Redeploy.
+
+Why Turnstile: public forms get found by spam bots quickly. The widget (invisible for most visitors) gives each real submission a one-time token, and the function asks Cloudflare to confirm it before sending anything. A hidden honeypot field catches the simplest bots as a second layer.
+
+For local testing you can use Cloudflare's test keys: site key `1x00000000000000000000AA` and secret `1x0000000000000000000000000000000AA` always pass.
+
 ## Theme
 
-Four palettes, each with light and dark: **Dusk sky** (default), **Ghibli summer**, **Tokyo night** and **Sumi ink**. Visitors pick from the palette button in the header or ⌘K; light/dark defaults to their system setting, and both choices are remembered.
-
-Colours are CSS variables in `src/index.css` (one block per palette and mode). The list shown in the menu is `src/lib/themes.ts`. To change the default palette, update `DEFAULT_PALETTE` there and the pre-paint script in `index.html`. Texture utilities: `panel` (comic panel border + hard shadow), `screentone` (halftone dots), `focus-lines` (hero background).
-
-Each section's Japanese subtitle is the `jp` prop on `<Section>`.
+Light and dark, defaulting to the visitor's system setting; the header toggle switches with a circular reveal (in browsers that support it) and the choice is remembered. Colours are CSS variables in `src/index.css`: light under `@theme`, dark under `:root[data-theme='dark']`. Utilities: `spotlight` (cursor-following border glow on cards), `dot-grid` (hero diagram background).
 
 ## SEO
 

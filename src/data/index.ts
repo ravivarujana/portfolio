@@ -57,10 +57,11 @@ export type Portfolio = {
     openTo: string
     email: string
     phone: string
+    /** Digits only, with country code, e.g. 918269745658. Empty hides WhatsApp. */
+    whatsapp: { number: string; message: string }
     resumeUrl: string
   }
   socials: Social[]
-  metrics: { label: string; value: string; suffix: string; note: string }[]
   about: { title: string; paragraphs: string[]; focus: { title: string; text: string }[] }
   experience: {
     company: string
@@ -70,8 +71,12 @@ export type Portfolio = {
     location: string
     current: boolean
     points: string[]
+    /** Show this many points, with a toggle for the rest */
+    visiblePoints?: number
     stack: string[]
   }[]
+  /** How many case studies show on the page; the rest are in the "view all" popup. Order in `caseStudies` decides which. */
+  caseStudiesPreview: number
   caseStudies: CaseStudy[]
   skills: { group: string; items: string[]; key: string[] }[]
   learning: {
@@ -88,7 +93,16 @@ export type Portfolio = {
     cloudflareResize: boolean
     photos: Photo[]
   }
-  contact: { title: string; highlight: string; note: string }
+  contact: {
+    title: string
+    note: string
+    form: {
+      /** POST endpoint for the contact form (Cloudflare Pages Function in functions/api/contact.ts) */
+      endpoint: string
+      /** Cloudflare Turnstile site key (public). Empty = no widget. */
+      turnstileSiteKey: string
+    }
+  }
 }
 
 export const portfolio = data as Portfolio
@@ -96,3 +110,6 @@ export const portfolio = data as Portfolio
 /** Social links that have a URL filled in. */
 export const socials = portfolio.socials.filter((s) => s.url.trim() !== '')
 export const social = (id: SocialId) => socials.find((s) => s.id === id)
+
+const wa = portfolio.profile.whatsapp
+export const whatsappUrl = wa.number ? `https://wa.me/${wa.number}?text=${encodeURIComponent(wa.message)}` : ''

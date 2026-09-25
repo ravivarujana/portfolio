@@ -7,7 +7,7 @@ export function Rich({ text }: { text: string }) {
     <>
       {parts.map((part, i) =>
         part.startsWith('**') && part.endsWith('**') ? (
-          <strong key={i} className="font-semibold text-ink">
+          <strong key={i} className="font-medium text-ink">
             {part.slice(2, -2)}
           </strong>
         ) : (

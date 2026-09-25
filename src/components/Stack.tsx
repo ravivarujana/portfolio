@@ -1,21 +1,29 @@
 import { portfolio } from '../data'
-import { Chips, Reveal, Section } from './ui'
+import { cn } from '../lib/cn'
 import { sectionIndex } from './nav'
+import { dimSiblings, Reveal, Section } from './ui'
 
 export function Stack() {
   return (
-    <Section id="stack" index={sectionIndex('stack')} name="stack" jp="技術" title="Toolkit" sub="Filled tags are what I reach for daily in production.">
-      <div className="border-t-2 border-edge">
-        {portfolio.skills.map((g, i) => (
-          <Reveal key={g.group} className="grid gap-3.5 border-b-2 border-dashed border-line-2 py-5 sm:py-6 md:grid-cols-[240px_1fr] md:gap-6">
-            <h3 className="flex items-baseline gap-3 pt-1 text-[17px] font-semibold tracking-[-0.01em] sm:text-lg">
-              <span className="font-display text-xs font-normal text-accent">{String(i + 1).padStart(2, '0')}</span>
-              {g.group}
-            </h3>
-            <Chips items={g.items} keys={g.key} size="md" />
-          </Reveal>
-        ))}
-      </div>
+    <Section id="stack" index={sectionIndex('stack')} name="Stack" title="Tools I work with." sub="The bold ones are what I use daily in production.">
+      <Reveal>
+        <dl className={cn('divide-y divide-line border-y border-line', dimSiblings)}>
+          {portfolio.skills.map((g) => (
+            <div key={g.group} className="grid gap-1.5 py-4 sm:grid-cols-[200px_1fr] sm:gap-6">
+              <dt className="label pt-0.5">{g.group}</dt>
+              <dd className="text-[15.5px] leading-relaxed">
+                {g.items.map((item, i) => (
+                  <span key={item}>
+                    <span className={cn('whitespace-nowrap', g.key.includes(item) ? 'font-medium text-ink' : 'text-ink-3')}>{item}</span>
+                    {/* real spaces around the separator so the line can wrap */}
+                    {i < g.items.length - 1 && <span aria-hidden className="text-line-2"> / </span>}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
     </Section>
   )
 }

@@ -1,26 +1,37 @@
-import { motion } from 'motion/react'
-import type { ReactNode } from 'react'
+import { motion, type Variants } from 'motion/react'
+import type { MouseEvent, ReactNode } from 'react'
 import { cn } from '../lib/cn'
 
+const ease = [0.22, 1, 0.36, 1] as const
+
+/** Blur-and-rise reveal when scrolled into view. */
 export function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -8% 0px' }}
-      transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1], delay }}
+      initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+      transition={{ duration: 0.7, ease, delay }}
     >
       {children}
     </motion.div>
   )
 }
 
+/** Staggered entrance for a group of children on first load (hero). */
+export const stagger: { parent: Variants; child: Variants } = {
+  parent: { hidden: {}, show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } } },
+  child: {
+    hidden: { opacity: 0, y: 10, filter: 'blur(6px)' },
+    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease } },
+  },
+}
+
 export function Section({
   id,
   index,
   name,
-  jp,
   title,
   sub,
   children,
@@ -29,37 +40,28 @@ export function Section({
   id: string
   index: string
   name: string
-  /** Short Japanese subtitle shown next to the section label */
-  jp?: string
   title?: ReactNode
   sub?: ReactNode
   children: ReactNode
   className?: string
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className={cn('pt-20 sm:pt-28 lg:pt-32', className)}>
+    <section id={id} aria-labelledby={`${id}-title`} className={cn('pt-24 sm:pt-32', className)}>
       <div className="wrap">
-        <Reveal className="mb-8 max-w-3xl sm:mb-12">
-          <p className="mb-4 flex items-center gap-3 font-mono text-[12.5px] uppercase tracking-[0.08em] text-ink-2">
-            <span className="grid h-7 min-w-7 place-items-center rounded-[3px] bg-ink px-1.5 font-display text-[13px] tracking-normal text-bg">
-              {index}
-            </span>
+        <Reveal className="mb-10 max-w-2xl sm:mb-12">
+          <p className="label mb-3 flex items-center gap-2">
+            <span className="text-ink-2">{index}</span>
+            <span aria-hidden className="h-px w-5 bg-line-2" />
             {name}
-            {jp && (
-              <span lang="ja" className="text-[15px] font-bold normal-case tracking-[0.12em] text-accent">
-                {jp}
-              </span>
-            )}
-            <span aria-hidden className="h-0.5 w-12 bg-edge" />
           </p>
           {title ? (
-            <h2 id={`${id}-title`} className="text-[28px] font-bold leading-[1.1] tracking-[-0.03em] text-balance sm:text-4xl lg:text-[46px]">
+            <h2 id={`${id}-title`} className="text-[26px] font-semibold leading-[1.15] tracking-[-0.025em] text-balance sm:text-[32px]">
               {title}
             </h2>
           ) : (
             <h2 id={`${id}-title`} className="sr-only">{name}</h2>
           )}
-          {sub && <p className="mt-3 max-w-[60ch] text-ink-2">{sub}</p>}
+          {sub && <p className="mt-3 max-w-[58ch] text-ink-2">{sub}</p>}
         </Reveal>
         {children}
       </div>
@@ -67,16 +69,15 @@ export function Section({
   )
 }
 
-export function Chips({ items, keys = [], size = 'sm', className }: { items: string[]; keys?: string[]; size?: 'sm' | 'md'; className?: string }) {
+export function Chips({ items, keys = [], className }: { items: string[]; keys?: string[]; className?: string }) {
   return (
-    <ul className={cn('flex flex-wrap gap-2', className)} aria-label="Technologies">
+    <ul className={cn('flex flex-wrap gap-1.5', className)} aria-label="Technologies">
       {items.map((item) => (
         <li
           key={item}
           className={cn(
-            'rounded-[5px] border font-mono leading-none',
-            size === 'sm' ? 'px-2.5 py-[7px] text-xs' : 'px-3 py-[9px] text-[13px]',
-            keys.includes(item) ? 'border-edge bg-ink text-bg' : 'border-line-2 bg-surface text-ink-2',
+            'rounded-md border px-2 py-[3px] font-mono text-[12px]',
+            keys.includes(item) ? 'border-line-2 bg-surface text-ink' : 'border-line bg-bg-2 text-ink-2',
           )}
         >
           {item}
@@ -88,18 +89,11 @@ export function Chips({ items, keys = [], size = 'sm', className }: { items: str
 
 export function Flow({ steps }: { steps: string[] }) {
   return (
-    <ol className="flex flex-wrap items-center gap-y-2 font-mono text-[11.5px] text-ink-2" aria-label="Flow">
+    <ol className="flex flex-wrap items-center gap-y-1.5 font-mono text-[11.5px] text-ink-3" aria-label="Flow">
       {steps.map((s, i) => (
         <li key={s} className="flex items-center">
-          {i > 0 && <span aria-hidden className="px-1.5 text-ink-3">→</span>}
-          <span
-            className={cn(
-              'rounded border px-2 py-1',
-              i === steps.length - 1 ? 'border-edge bg-surface text-ink' : 'border-dashed border-line-2',
-            )}
-          >
-            {s}
-          </span>
+          {i > 0 && <span aria-hidden className="px-1.5 text-line-2">→</span>}
+          <span className={cn(i === steps.length - 1 && 'text-ink')}>{s}</span>
         </li>
       ))}
     </ol>
@@ -107,28 +101,23 @@ export function Flow({ steps }: { steps: string[] }) {
 }
 
 const btnBase =
-  'inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-[4px] border-2 border-edge px-4.5 text-[15px] font-semibold shadow-[3px_3px_0_var(--color-shadow)] transition-[background-color,color,transform,box-shadow] duration-150 hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_var(--color-shadow)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none'
+  'inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full px-4 text-[14px] font-medium transition-[background-color,border-color,color,transform] duration-200 active:scale-[0.97]'
 
 export const btn = {
-  primary: cn(btnBase, 'bg-accent text-accent-ink hover:bg-accent-hover'),
-  ghost: cn(btnBase, 'bg-surface text-ink hover:bg-surface-2'),
-}
-
-/** Red hanko-style seal used as the brand mark. */
-export function Seal({ className }: { className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        'grid size-8 -rotate-3 place-items-center rounded-[4px] bg-accent font-display text-[12px] leading-none text-accent-ink ring-1 ring-inset ring-accent-ink/70 [box-shadow:inset_0_0_0_3px_var(--color-accent)]',
-        className,
-      )}
-    >
-      RV
-    </span>
-  )
+  primary: cn(btnBase, 'bg-ink text-bg hover:bg-ink/85'),
+  ghost: cn(btnBase, 'border border-line-2 bg-surface text-ink hover:border-ink-3/60 hover:bg-bg-2'),
 }
 
 export function LiveDot() {
-  return <span aria-hidden className="size-[7px] flex-none rounded-full bg-live animate-pulse-live" />
+  return <span aria-hidden className="size-1.5 flex-none rounded-full bg-live animate-pulse-live" />
 }
+
+/** Feed the cursor position to a `.spotlight` element. */
+export function trackSpotlight(e: MouseEvent<HTMLElement>) {
+  const r = e.currentTarget.getBoundingClientRect()
+  e.currentTarget.style.setProperty('--x', `${e.clientX - r.left}px`)
+  e.currentTarget.style.setProperty('--y', `${e.clientY - r.top}px`)
+}
+
+/** Hovering one child fades its siblings (for lists and grids). */
+export const dimSiblings = 'hover-hover:[&:has(>*:hover)>*:not(:hover)]:opacity-55 [&>*]:transition-opacity [&>*]:duration-300'

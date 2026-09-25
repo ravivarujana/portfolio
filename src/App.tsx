@@ -15,24 +15,25 @@ import { portfolio } from './data'
 import { useCaseHash } from './hooks/useCaseHash'
 import { useTheme } from './hooks/useTheme'
 
-const caseIds = portfolio.caseStudies.map((c) => c.id)
+// 'all' opens the case studies popup with the full list and nothing selected
+const caseIds = [...portfolio.caseStudies.map((c) => c.id), 'all']
 
 export default function App() {
   const [paletteOpen, setPaletteOpen] = useState(false)
   const { openId, open, close } = useCaseHash(caseIds)
   const openPalette = () => setPaletteOpen(true)
-  const { mode, palette, setMode, setPalette } = useTheme()
+  const { mode, toggle } = useTheme()
 
   return (
     <MotionConfig reducedMotion="user">
       <a
         href="#main"
-        className="fixed left-4 top-3 z-[100] -translate-y-[200%] focus:translate-y-0 rounded-[4px] border-2 border-edge bg-accent px-3.5 py-2.5 font-semibold text-accent-ink transition-transform"
+        className="fixed left-4 top-3 z-[100] -translate-y-[200%] focus:translate-y-0 rounded-full bg-ink text-bg px-4 py-2 text-sm font-medium transition-transform"
       >
         Skip to content
       </a>
       <div id="top" />
-      <Header onOpenPalette={openPalette} mode={mode} palette={palette} onMode={setMode} onPalette={setPalette} />
+      <Header onOpenPalette={openPalette} mode={mode} onToggleTheme={toggle} />
       <main id="main">
         <Hero />
         <About />
@@ -41,13 +42,12 @@ export default function App() {
         <Stack />
         <Learning />
         <Photography />
-        <Contact />
+        <Contact mode={mode} />
       </main>
       <Footer onOpenPalette={openPalette} />
       <CommandMenu
         mode={mode}
-        onMode={setMode}
-        onPalette={setPalette}
+        onToggleTheme={() => toggle()}
         open={paletteOpen}
         onOpenChange={setPaletteOpen}
         onOpenCase={(id) => {
