@@ -1,0 +1,593 @@
+{
+  "meta": {
+    "siteUrl": "",
+    "title": "Ravi Varujana — Backend-focused Full-Stack Engineer",
+    "description": "Full-Stack Software Engineer with 4.5+ years in Node.js/NestJS microservices, real-time infrastructure, API design, PostgreSQL and Redis. Based in Bangalore, India."
+  },
+  "profile": {
+    "name": "Ravi Varujana",
+    "handle": "ravi-varujana",
+    "role": "Full-Stack Engineer",
+    "rolePrefix": "Backend-focused",
+    "currentTitle": "Solution Engineer",
+    "currentCompany": "Gammastack",
+    "location": "Bangalore, India",
+    "timezone": "IST · UTC+5:30",
+    "yearsOfExperience": "4.5+",
+    "intro": "I build the backend that production depends on: Node.js and NestJS microservices, real-time infrastructure and API design, with hands-on ReactJS on the frontend. Experience across iGaming, fintech and enterprise SaaS. Currently extending that stack into AI/ML.",
+    "focus": [
+      "Node.js",
+      "NestJS",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "Socket.IO"
+    ],
+    "openTo": "SDE-2 · Backend · Full-Stack roles",
+    "email": "varujana.ravi@gmail.com",
+    "phone": "",
+    "resumeUrl": ""
+  },
+  "socials": [
+    {
+      "id": "github",
+      "label": "GitHub",
+      "url": "https://github.com/ravivarujana",
+      "hero": true
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ravi-varujana",
+      "hero": true
+    },
+    {
+      "id": "x",
+      "label": "X (Twitter)",
+      "url": "",
+      "hero": false
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "url": "",
+      "hero": false
+    }
+  ],
+  "metrics": [
+    {
+      "label": "API response time",
+      "value": "70",
+      "suffix": "%+",
+      "note": "faster via PostgreSQL query tuning & indexing"
+    },
+    {
+      "label": "Sticky sessions",
+      "value": "0",
+      "suffix": "",
+      "note": "Socket.IO scaled horizontally via Redis adapter"
+    },
+    {
+      "label": "Reward types",
+      "value": "5",
+      "suffix": "+",
+      "note": "unified in one extensible bonus engine"
+    },
+    {
+      "label": "In production",
+      "value": "4.5",
+      "suffix": "+ yrs",
+      "note": "iGaming, fintech & enterprise SaaS"
+    }
+  ],
+  "about": {
+    "title": "Backend first, full-stack by practice.",
+    "paragraphs": [
+      "Most of my work sits behind the API: service boundaries, data models, queues, real-time channels and the queries that decide how fast everything feels. I care about systems that are observable, retry-safe and deployable on their own.",
+      "At Gammastack I work on a production iGaming platform spanning casino, sportsbook and real-time multiplayer features: compliance enforcement, KYC, crypto payments, a bonus engine, background workers and horizontally scaled Socket.IO.",
+      "Before that I built Domain-Driven NestJS services and React microfrontends for enterprise clients at Nagarro, and payment UI and performance work in React at Qodic Technosoft."
+    ],
+    "focus": [
+      {
+        "title": "Distributed services",
+        "text": "Independently deployable microservices, queue workers and clear service boundaries."
+      },
+      {
+        "title": "Real-time infrastructure",
+        "text": "Socket.IO across many Node.js instances with a Redis adapter."
+      },
+      {
+        "title": "Data & performance",
+        "text": "Schema design with Prisma, PostgreSQL query tuning and indexing strategy."
+      },
+      {
+        "title": "Money & compliance flows",
+        "text": "Payments, KYC, responsible-gambling limits and reward systems."
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "Gammastack",
+      "role": "Solution Engineer",
+      "start": "May 2025",
+      "end": "Present",
+      "location": "Bangalore, India",
+      "current": true,
+      "points": [
+        "Engineered backend services for a production iGaming platform spanning casino, sportsbook and real-time multiplayer features across a **microservices** architecture with independently deployable services.",
+        "Built a server-side **Responsible Gambling** enforcement layer intercepting gameplay and deposit actions to apply configurable bet limits, loss limits, session time caps and self-exclusion.",
+        "Implemented a **multi-level KYC pipeline using Veriff APIs** with a structured admin approval and escalation workflow.",
+        "Integrated **Layer1** crypto protocol for multi-currency deposits and withdrawals, with scheduled exchange-rate synchronization that eliminated manual reconciliation.",
+        "Designed a bonus engine consolidating **5+ reward types** into a single extensible workflow, powering automated VIP tier progression.",
+        "Replaced ad-hoc scripts with a **Bull (Redis)** queue worker service with retry logic, Bull Board visibility and independent deploys.",
+        "Scaled **Socket.IO** across multiple Node.js instances using a **Redis adapter**, without sticky sessions or dropped connections.",
+        "Reduced API response times by **70%+** through PostgreSQL query tuning and advanced indexing strategies."
+      ],
+      "stack": [
+        "Node.js",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "Bull",
+        "Socket.IO",
+        "Veriff",
+        "Layer1"
+      ]
+    },
+    {
+      "company": "Qodic Technosoft",
+      "role": "Software Developer",
+      "start": "Sept 2024",
+      "end": "Feb 2025",
+      "location": "Remote",
+      "current": false,
+      "points": [
+        "Migrated a legacy **React** codebase from class components to functional components with hooks, reducing boilerplate and improving maintainability.",
+        "Built a modular, reusable payment UI component library with **Tailwind CSS** and lazy loading, reused across multiple client projects.",
+        "Improved frontend performance through **Lighthouse**-driven audits: render-blocking resources, code splitting and asset optimization."
+      ],
+      "stack": [
+        "ReactJS",
+        "Tailwind CSS",
+        "Lighthouse"
+      ]
+    },
+    {
+      "company": "Nagarro",
+      "role": "Associate Software Engineer → Software Engineer",
+      "start": "Feb 2022",
+      "end": "Aug 2024",
+      "location": "Gurugram, India",
+      "current": false,
+      "points": [
+        "Built and maintained scalable backend services with **Node.js/NestJS** following Domain-Driven Design for multiple enterprise clients.",
+        "Designed RESTful APIs and relational schemas with **Prisma ORM**, enforcing consistency and ACID compliance across a team of engineers.",
+        "Developed modular **ReactJS** components in a microfrontend architecture with independent deployment and team ownership.",
+        "Reviewed code and mentored junior developers, improving code quality and speeding up onboarding.",
+        "Authored API documentation with **Redocly** and automated test suites with **Jest**, reducing regression incidents."
+      ],
+      "stack": [
+        "NestJS",
+        "Express",
+        "Prisma",
+        "ReactJS",
+        "Microfrontends",
+        "Redocly",
+        "Jest"
+      ]
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "postgres-performance",
+      "tag": "Performance",
+      "title": "PostgreSQL query tuning & indexing",
+      "summary": "Query tuning and advanced indexing strategies on the platform's PostgreSQL layer cut API response times by more than 70%.",
+      "featured": true,
+      "metric": {
+        "value": "−70%+",
+        "label": "API response time"
+      },
+      "flow": [
+        "slow endpoint",
+        "query plan",
+        "index",
+        "fast endpoint"
+      ],
+      "stack": [
+        "PostgreSQL",
+        "SQL optimization",
+        "Indexing"
+      ],
+      "details": [
+        {
+          "heading": "Context",
+          "body": "API endpoints on a production iGaming platform, backed by PostgreSQL."
+        },
+        {
+          "heading": "What I did",
+          "points": [
+            "Tuned slow PostgreSQL queries behind the APIs.",
+            "Applied advanced indexing strategies to the affected tables."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "API response times reduced by 70%+."
+        }
+      ]
+    },
+    {
+      "id": "socketio-scaling",
+      "tag": "Real-time",
+      "title": "Horizontally scaled Socket.IO",
+      "summary": "A Redis adapter fans events out across Node.js instances, so live player features scale horizontally without sticky sessions.",
+      "flow": [
+        "node #n",
+        "redis adapter",
+        "all nodes"
+      ],
+      "stack": [
+        "Socket.IO",
+        "Redis",
+        "Node.js"
+      ],
+      "details": [
+        {
+          "heading": "Context",
+          "body": "Live player features needed to run on more than one Node.js instance."
+        },
+        {
+          "heading": "What I did",
+          "points": [
+            "Connected Socket.IO instances through a Redis adapter so events reach clients on any instance."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Horizontal scaling of live features without sticky sessions or dropped connections."
+        }
+      ]
+    },
+    {
+      "id": "responsible-gambling",
+      "tag": "Compliance",
+      "title": "Responsible Gambling enforcement",
+      "summary": "A server-side layer that intercepts gameplay and deposit actions and enforces configurable player limits.",
+      "flow": [
+        "bet / deposit",
+        "rg guard",
+        "allow · block"
+      ],
+      "stack": [
+        "NestJS",
+        "Microservices"
+      ],
+      "details": [
+        {
+          "heading": "Context",
+          "body": "Regulatory compliance requires limits to be enforced on the server, not the client."
+        },
+        {
+          "heading": "What I did",
+          "points": [
+            "Built an enforcement layer that intercepts gameplay and deposit actions.",
+            "Applied configurable bet limits, loss limits, session time caps and self-exclusion."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Player limits enforced server-side, ensuring regulatory compliance."
+        }
+      ]
+    },
+    {
+      "id": "bull-workers",
+      "tag": "Async jobs",
+      "title": "Bull queue worker service",
+      "summary": "Ad-hoc scripts replaced by a dedicated worker service with retries, failure visibility and independent deploys.",
+      "flow": [
+        "api",
+        "bull queue",
+        "worker"
+      ],
+      "stack": [
+        "Bull",
+        "Redis",
+        "Bull Board"
+      ],
+      "details": [
+        {
+          "heading": "Context",
+          "body": "Background work was running as ad-hoc scripts with no retries or visibility."
+        },
+        {
+          "heading": "What I did",
+          "points": [
+            "Moved background jobs onto Bull (Redis) queues in a separate worker service.",
+            "Added retry logic and failure visibility through Bull Board."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Reliable background jobs, deployable independently from the main API."
+        }
+      ]
+    },
+    {
+      "id": "kyc-pipeline",
+      "tag": "Identity",
+      "title": "Multi-level KYC pipeline",
+      "summary": "Automated identity and document verification through Veriff, with admin approval and escalation.",
+      "flow": [
+        "veriff",
+        "admin review",
+        "escalation"
+      ],
+      "stack": [
+        "Veriff API",
+        "Node.js"
+      ],
+      "details": [
+        {
+          "heading": "What I did",
+          "points": [
+            "Integrated Veriff APIs for identity and document verification across multiple KYC levels.",
+            "Built a structured admin approval and escalation workflow."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Automated verification with a clear path for manual review."
+        }
+      ]
+    },
+    {
+      "id": "crypto-payments",
+      "tag": "Payments",
+      "title": "Crypto deposits & withdrawals",
+      "summary": "Layer1 integration for multi-currency deposits and withdrawals, with scheduled exchange-rate sync.",
+      "flow": [
+        "layer1",
+        "fx sync job",
+        "wallet"
+      ],
+      "stack": [
+        "Layer1",
+        "Scheduled jobs"
+      ],
+      "details": [
+        {
+          "heading": "What I did",
+          "points": [
+            "Integrated the Layer1 crypto protocol for multi-currency deposits and withdrawals.",
+            "Synchronized exchange rates automatically through scheduled jobs."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Eliminated manual reconciliation."
+        }
+      ]
+    },
+    {
+      "id": "bonus-engine",
+      "tag": "Rewards",
+      "title": "Bonus engine & VIP tiers",
+      "summary": "Five-plus reward types consolidated into one extensible workflow that also drives VIP tier progression.",
+      "flow": [
+        "player activity",
+        "bonus engine",
+        "vip tier"
+      ],
+      "stack": [
+        "NestJS",
+        "PostgreSQL"
+      ],
+      "details": [
+        {
+          "heading": "What I did",
+          "points": [
+            "Consolidated joining, referral, deposit, cashback and wagering rewards into a single extensible workflow.",
+            "Used the same engine to power automated VIP tier progression based on player activity."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "One place to add new reward types instead of one-off implementations."
+        }
+      ]
+    },
+    {
+      "id": "payment-ui-library",
+      "tag": "Frontend",
+      "title": "Reusable payment UI library",
+      "summary": "A modular payment component library in React and Tailwind CSS, shipped across multiple client projects.",
+      "flow": [
+        "component lib",
+        "lazy load",
+        "n clients"
+      ],
+      "stack": [
+        "ReactJS",
+        "Tailwind CSS"
+      ],
+      "details": [
+        {
+          "heading": "What I did",
+          "points": [
+            "Built modular, reusable payment UI components with Tailwind CSS.",
+            "Lazy-loaded components to keep bundles small."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Deployed across multiple client projects without duplication."
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "Express",
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Microservices",
+        "REST APIs",
+        "Socket.IO",
+        "Apache Kafka"
+      ],
+      "key": [
+        "Node.js",
+        "NestJS",
+        "TypeScript",
+        "Microservices"
+      ]
+    },
+    {
+      "group": "Data",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "MongoDB",
+        "Prisma ORM",
+        "Sequelize",
+        "SQL Query Optimization"
+      ],
+      "key": [
+        "PostgreSQL",
+        "Redis",
+        "SQL Query Optimization"
+      ]
+    },
+    {
+      "group": "Async & Messaging",
+      "items": [
+        "Bull",
+        "Bull Board",
+        "Apache Kafka",
+        "Scheduled jobs"
+      ],
+      "key": [
+        "Bull"
+      ]
+    },
+    {
+      "group": "Cloud & DevOps",
+      "items": [
+        "AWS EC2",
+        "AWS ECS",
+        "AWS ECR",
+        "AWS S3",
+        "Docker",
+        "Kubernetes",
+        "Git"
+      ],
+      "key": [
+        "AWS ECS",
+        "Docker"
+      ]
+    },
+    {
+      "group": "Frontend",
+      "items": [
+        "ReactJS",
+        "Redux",
+        "Tailwind CSS",
+        "React Storybook",
+        "Microfrontends"
+      ],
+      "key": [
+        "ReactJS"
+      ]
+    },
+    {
+      "group": "Quality & Docs",
+      "items": [
+        "Jest",
+        "Redocly",
+        "Postman",
+        "Code review"
+      ],
+      "key": [
+        "Jest"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "items": [
+        "Layer1 (Crypto)",
+        "Veriff (KYC)",
+        "Agora (Real-time)",
+        "OAuth 2.0",
+        "Web3 / MetaMask"
+      ],
+      "key": []
+    }
+  ],
+  "learning": {
+    "title": "Extending the backend into AI/ML.",
+    "intro": "Learning in parallel with my day job. The focus is where AI meets the systems I already build: services, data, queues and APIs.",
+    "tracks": [
+      {
+        "title": "LLM features in Node.js services",
+        "text": "Calling LLM APIs from NestJS services: streaming responses, structured outputs and tool calling behind a clean API.",
+        "builds_on": "API design · NestJS",
+        "tags": [
+          "LLM APIs",
+          "Streaming",
+          "Tool calling"
+        ]
+      },
+      {
+        "title": "Retrieval on PostgreSQL",
+        "text": "Embeddings and retrieval-augmented generation using pgvector, next to the relational data it needs to stay consistent with.",
+        "builds_on": "PostgreSQL · indexing",
+        "tags": [
+          "Embeddings",
+          "RAG",
+          "pgvector"
+        ]
+      },
+      {
+        "title": "AI workloads on queues",
+        "text": "Running slow, failure-prone AI jobs through queue workers with retries and visibility, the same way I run background jobs today.",
+        "builds_on": "Bull · Redis",
+        "tags": [
+          "Agents",
+          "Async jobs",
+          "Evaluation"
+        ]
+      },
+      {
+        "title": "ML fundamentals in Python",
+        "text": "The core ideas behind models and data pipelines, so AI features are designed rather than bolted on.",
+        "builds_on": "Python",
+        "tags": [
+          "Python",
+          "pandas",
+          "scikit-learn"
+        ]
+      }
+    ]
+  },
+  "photography": {
+    "title": "Off the clock.",
+    "intro": "When I'm not building backends, I'm usually behind a camera. A few frames I like.",
+    "baseUrl": "",
+    "cloudflareResize": false,
+    "photos": []
+  },
+  "contact": {
+    "title": "Building something on Node.js, real-time or PostgreSQL?",
+    "highlight": "Let's talk.",
+    "note": "Open to SDE-2, backend and full-stack roles. The fastest way to reach me is email."
+  }
+}
