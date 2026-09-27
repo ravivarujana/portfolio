@@ -20,7 +20,7 @@ const nodes: Node[] = [
   { x: 20, y: 12, w: 100, h: 32, label: 'player' },
   { x: 160, y: 12, w: 100, h: 32, label: 'player' },
   { x: 300, y: 12, w: 100, h: 32, label: 'player' },
-  { x: 110, y: 92, w: 200, h: 32, label: 'load balancer · no sticky', kind: 'muted' },
+  { x: 110, y: 92, w: 200, h: 32, label: 'load balancer', kind: 'muted' },
   { x: 20, y: 164, w: 100, h: 36, label: 'node · io #1', kind: 'strong' },
   { x: 160, y: 164, w: 100, h: 36, label: 'node · io #2', kind: 'strong' },
   { x: 300, y: 164, w: 100, h: 36, label: 'node · io #3', kind: 'strong' },
@@ -66,7 +66,7 @@ export function ArchDiagram() {
     <svg ref={ref} viewBox="0 0 420 346" role="img" aria-labelledby="arch-title arch-desc" className="h-auto w-full">
       <title id="arch-title">Real-time architecture diagram</title>
       <desc id="arch-desc">
-        Players connect through a load balancer without sticky sessions to three Node.js Socket.IO instances. The instances share events
+        Players connect through a load balancer to three Node.js Socket.IO instances, so no single instance is a point of failure. The instances share events
         through a Redis pub/sub adapter, persist to PostgreSQL, and hand background jobs to Bull queue workers.
       </desc>
       <defs>

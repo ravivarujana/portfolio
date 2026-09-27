@@ -47,7 +47,7 @@ export function CaseStudiesDialog({ open, selectedId, onSelect, onClose }: Props
           <div aria-hidden className="mx-auto mt-2.5 h-1 w-10 flex-none rounded-full bg-line-2 sm:hidden" />
           <header className="flex flex-none items-center justify-between gap-4 border-b border-line py-2 pl-5 pr-3 sm:py-3 sm:pl-6">
             <Dialog.Title className="flex items-baseline gap-2.5 text-[17px] font-semibold tracking-[-0.015em]">
-              Case studies <span className="label">{caseStudies.length}</span>
+              Case studies
             </Dialog.Title>
             <Dialog.Close
               className="grid size-11 flex-none place-items-center rounded-full text-ink-3 transition-colors hover:bg-bg-2 hover:text-ink"

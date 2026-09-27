@@ -117,7 +117,7 @@ export function Hero() {
           </div>
           <figcaption className="border-t border-line px-4 py-3 text-[13px] leading-normal text-ink-3 sm:px-5">
             {tab === 'arch'
-              ? 'Socket.IO across multiple Node.js instances, kept in sync by a Redis adapter. No sticky sessions.'
+              ? 'Socket.IO scaled horizontally across Node.js instances via the Redis adapter, with no single point of failure.'
               : 'The short version.'}
           </figcaption>
         </motion.figure>
