@@ -93,13 +93,13 @@
       "location": "Bangalore, India",
       "current": true,
       "points": [
-        "Engineered backend services using **Node.js** for a production iGaming platform spanning casino, sportsbook and real-time multiplayer features across a **microservices** architecture with independently deployable services.",
+        "Engineered **Node.js** backend services for a production iGaming platform spanning casino, sportsbook and real-time multiplayer features, running as 3 independently deployed services backed by PostgreSQL and Redis, with **Kafka** for event streaming to an external CRM.",
         "Reduced API latency by **70%+** on high-traffic endpoints via **PostgreSQL** query rewrites and targeted indexing.",
         "Scaled **Socket.IO** horizontally across Node.js instances via the **Redis** adapter, removing a single point of failure.",
         "Built a server-side **Responsible Gambling** layer that intercepts every bet and deposit to enforce configurable bet and loss limits, session time caps and self-exclusion, meeting regulatory requirements.",
         "Implemented a multi-level **KYC** pipeline on **Veriff** APIs, automating identity and document verification with an admin approval and escalation workflow.",
         "Integrated **Layer1** for multi-currency crypto payments, with scheduled exchange-rate sync replacing manual updates.",
-        "Designed a rule-driven bonus engine unifying **5** reward types (joining, referral, deposit, cashback, wagering) behind one extensible workflow that also automates VIP tier progression from player activity.",
+        "Designed a rule-driven bonus engine unifying **5** reward types (joining, referral, deposit, cashback, wagering) behind one extensible workflow that also automates **VIP tier** progression from player activity.",
         "Moved ad-hoc scripts into an independently deployed **Bull (Redis)** worker with retries and Bull Board monitoring."
       ],
       "stack": [
@@ -107,6 +107,7 @@
         "NestJS",
         "PostgreSQL",
         "Redis",
+        "Kafka",
         "Bull",
         "Socket.IO",
         "Veriff",
@@ -142,7 +143,7 @@
       "location": "Gurugram, India",
       "current": false,
       "points": [
-        "Built and maintained scalable backend services using **Node.js/NestJS** following Domain-Driven Design, serving multiple enterprise clients with high reliability.",
+        "Built and maintained scalable **microservices** using **NestJS** following Domain-Driven Design, serving multiple enterprise clients with high reliability.",
         "Designed REST APIs and relational schemas with **Prisma ORM**, using transactions and constraints for consistency.",
         "Developed **React** modules in a microfrontend architecture, so teams could own and deploy UI modules independently.",
         "Wrote **Jest** test suites and **Redocly** API docs, reducing regressions and speeding up third-party integrations.",
