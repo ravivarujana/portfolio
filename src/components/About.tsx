@@ -16,7 +16,7 @@ export function About() {
         <Reveal delay={0.08}>
           <ul aria-label="Areas of focus" className={`grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-1 ${dimSiblings}`}>
             {about.focus.map((f) => (
-              <li key={f.title} className="bg-surface p-5">
+              <li key={f.title} className="bg-surface p-5 sm:last:odd:col-span-2 lg:last:odd:col-span-1">
                 <h3 className="text-[15px] font-medium">{f.title}</h3>
                 <p className="mt-1 text-[14.5px] leading-relaxed text-ink-3">{f.text}</p>
               </li>

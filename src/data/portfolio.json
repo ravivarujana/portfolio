@@ -69,11 +69,11 @@
     }
   ],
   "about": {
-    "title": "I own systems end to end.",
+    "title": "I own what I build, and help the team build faster.",
     "paragraphs": [
       "From the data model and API to the integrations, background jobs and admin workflows people use to run it. I like problems where a manual process can become code, and where systems have to stay in sync without anyone checking.",
-      "At Gammastack I build backend services for a production iGaming platform: 3 independently deployed services on PostgreSQL and Redis, with Kafka streaming events to an external CRM. Around that sit payments, identity verification, a rules layer on every transaction, a bonus engine and background workers.",
-      "Before that I built Node.js APIs and server-side payment validation for a US client's sales CRM at Qodic Technosoft, and NestJS microservices and React microfrontends for enterprise clients at Nagarro. AI tools are part of how I work every day, and I'm now learning to build AI features into the systems themselves."
+      "At Gammastack I build backend services for a production iGaming platform: 3 independently deployed services on PostgreSQL and Redis, with Kafka streaming events to an external CRM. Around that sit payments, identity verification, a rules layer on every transaction, a bonus engine and background workers. Before that I built Node.js APIs and server-side payment validation for a US client's sales CRM at Qodic Technosoft.",
+      "I care just as much about the team around a system. At Nagarro I reviewed code and mentored junior developers, and was promoted from Associate to Software Engineer; my Jest suites and Redocly docs reduced regressions and sped up third-party integrations. At Qodic, the payment component library I built is shared across client projects instead of rebuilt for each one."
     ],
     "focus": [
       {
@@ -91,6 +91,10 @@
       {
         "title": "Data & performance",
         "text": "SQL query rewrites and indexing (70%+ lower latency), schema design with Prisma."
+      },
+      {
+        "title": "Making the team faster",
+        "text": "Code reviews and mentoring, tests and API docs others can rely on, microfrontends teams own independently, and shared component libraries."
       }
     ]
   },
