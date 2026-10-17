@@ -53,6 +53,8 @@ export type Portfolio = {
     timezone: string
     yearsOfExperience: string
     intro: string
+    /** Short labelled lines under the intro, e.g. 0 → 1 (creating) and 1 → N (scaling) */
+    modes: { label: string; text: string }[]
     focus: string[]
     openTo: string
     email: string

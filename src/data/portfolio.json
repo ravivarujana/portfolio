@@ -14,7 +14,17 @@
     "location": "Bangalore, India",
     "timezone": "IST · UTC+5:30",
     "yearsOfExperience": "4.5",
-    "intro": "Full-stack engineer (Node.js/NestJS, React, PostgreSQL) with 4.5 years owning systems end to end: payment and verification workflows, third-party integrations, event-driven sync between systems, and automation that replaces manual work. I build with AI coding tools like Claude Code and Cursor as a default part of designing, debugging and shipping.",
+    "intro": "Full-stack engineer (Node.js/NestJS, React, PostgreSQL) who owns systems end to end, and builds with AI tools like Claude Code and Cursor by default.",
+    "modes": [
+      {
+        "label": "0 → 1",
+        "text": "Building new systems from a blank page: a rule-driven bonus engine, a multi-level KYC pipeline, and a rules layer that checks every bet and deposit."
+      },
+      {
+        "label": "1 → N",
+        "text": "Making existing ones faster and sturdier: 70%+ lower API latency, Socket.IO scaled with no single point of failure, and ad-hoc scripts turned into monitored workers."
+      }
+    ],
     "focus": [
       "Node.js",
       "NestJS",

@@ -53,6 +53,16 @@ export function Hero() {
           <motion.p variants={stagger.child} className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-2 sm:text-lg">
             {profile.intro}
           </motion.p>
+          {profile.modes.length > 0 && (
+            <motion.dl variants={stagger.child} className="mt-5 grid max-w-[56ch] gap-3">
+              {profile.modes.map((m) => (
+                <div key={m.label} className="grid grid-cols-[56px_1fr] items-baseline gap-3">
+                  <dt className="whitespace-nowrap font-mono text-[13px] font-medium text-accent">{m.label}</dt>
+                  <dd className="text-[15.5px] leading-relaxed text-ink-2">{m.text}</dd>
+                </div>
+              ))}
+            </motion.dl>
+          )}
 
           <motion.div variants={stagger.child} className="mt-8 flex flex-wrap gap-2.5">
             <a href="#contact" className={cn(btn.primary, 'group max-sm:flex-1')}>
