@@ -1,9 +1,10 @@
 import { ArrowDown, ArrowRight, MessageCircle } from 'lucide-react'
 import { motion } from 'motion/react'
-import { useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { portfolio, socials, whatsappUrl } from '../data'
 import { cn } from '../lib/cn'
 import { ArchDiagram } from './ArchDiagram'
+import { PixelNow } from './PixelNow'
 import { SocialIcon } from './SocialIcon'
 import { btn, LiveDot, stagger } from './ui'
 
@@ -12,10 +13,27 @@ const { profile } = portfolio
 const tabs = [
   { id: 'arch', label: 'architecture' },
   { id: 'json', label: 'whoami.json' },
+  { id: 'now', label: 'now' },
 ] as const
 
 export function Hero() {
   const [tab, setTab] = useState<(typeof tabs)[number]['id']>('arch')
+  // Smooth tab switches: pin the current height, swap content, transition to the new height,
+  // then release back to auto so the panel can grow freely again (e.g. when the log opens).
+  const body = useRef<HTMLDivElement>(null)
+  const [height, setHeight] = useState<number | null>(null)
+  const switchTab = (next: typeof tab) => {
+    if (next === tab) return
+    if (body.current) setHeight(body.current.offsetHeight)
+    setTab(next)
+  }
+  useLayoutEffect(() => {
+    if (height === null || !body.current) return
+    const target = body.current.offsetHeight
+    if (target === height) return setHeight(null)
+    requestAnimationFrame(() => setHeight(target))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tab])
 
   return (
     <section aria-labelledby="hero-title" className="relative pt-14 sm:pt-24">
@@ -87,7 +105,7 @@ export function Hero() {
                   id={`tab-${t.id}`}
                   aria-selected={tab === t.id}
                   aria-controls={`panel-${t.id}`}
-                  onClick={() => setTab(t.id)}
+                  onClick={() => switchTab(t.id)}
                   className="relative isolate min-h-8 rounded-full px-3 font-mono text-[12px] text-ink-3 transition-colors aria-selected:text-ink"
                 >
                   {tab === t.id && (
@@ -104,22 +122,46 @@ export function Hero() {
             <span className="label hidden sm:block">fig. 01</span>
           </div>
 
-          <div className="dot-grid p-4 sm:p-6">
-            {tab === 'arch' ? (
-              <div role="tabpanel" id="panel-arch" aria-labelledby="tab-arch">
-                <ArchDiagram />
+          <div
+            className="overflow-hidden transition-[height] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+            style={height === null ? undefined : { height }}
+            onTransitionEnd={(e) => e.target === e.currentTarget && setHeight(null)}
+          >
+            <motion.div
+              ref={body}
+              key={tab}
+              initial={{ opacity: 0, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, filter: 'blur(0px)' }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            >
+              <div className="dot-grid p-4 sm:px-6 sm:py-5">
+                {tab === 'arch' ? (
+                  <div role="tabpanel" id="panel-arch" aria-labelledby="tab-arch">
+                    <ArchDiagram />
+                  </div>
+                ) : tab === 'json' ? (
+                  <div role="tabpanel" id="panel-json" aria-labelledby="tab-json" className="rounded-lg border border-line bg-surface p-4">
+                    <WhoAmI />
+                  </div>
+                ) : (
+                  <div
+                    role="tabpanel"
+                    id="panel-now"
+                    aria-labelledby="tab-now"
+                    className="rounded-lg border border-line bg-surface p-4 sm:p-5"
+                  >
+                    <PixelNow />
+                  </div>
+                )}
               </div>
-            ) : (
-              <div role="tabpanel" id="panel-json" aria-labelledby="tab-json" className="rounded-lg border border-line bg-surface p-4">
-                <WhoAmI />
-              </div>
-            )}
+              {/* The architecture tab explains itself through its log line, so it skips the caption. */}
+              {tab !== 'arch' && (
+                <figcaption className="border-t border-line px-4 py-3 text-[13px] leading-normal text-ink-3 sm:px-5">
+                  {tab === 'json' ? 'The short version.' : 'What I am probably doing right now.'}
+                </figcaption>
+              )}
+            </motion.div>
           </div>
-          <figcaption className="border-t border-line px-4 py-3 text-[13px] leading-normal text-ink-3 sm:px-5">
-            {tab === 'arch'
-              ? 'Socket.IO scaled horizontally across Node.js instances via the Redis adapter, with no single point of failure.'
-              : 'The short version.'}
-          </figcaption>
         </motion.figure>
       </div>
     </section>

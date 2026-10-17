@@ -592,8 +592,8 @@
     }
   ],
   "learning": {
-    "title": "AI-first in how I work, still learning how to build with it.",
-    "intro": "AI tools are part of my daily workflow. Building AI features into backends is what I'm learning next, focused on where it meets the systems I already build: services, data, queues and APIs.",
+    "title": "AI in my workflow today. In my systems next.",
+    "intro": "I use AI tools every day to design, code, debug and test. Next I'm learning to build AI features into the systems themselves: services, data, queues and APIs.",
     "tracks": [
       {
         "title": "AI-assisted engineering, every day",

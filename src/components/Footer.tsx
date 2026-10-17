@@ -1,12 +1,16 @@
 import { portfolio, socials } from '../data'
+import { PixelWave } from './PixelNow'
 import { SocialIcon } from './SocialIcon'
 
 export function Footer({ onOpenPalette }: { onOpenPalette: () => void }) {
   return (
     <footer className="border-t border-line pb-[env(safe-area-inset-bottom)]">
       <div className="wrap flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-6 text-[13px] text-ink-3">
-        <p>
-          © {new Date().getFullYear()} {portfolio.profile.name}
+        <p className="flex items-center gap-2.5">
+          <PixelWave className="h-5 w-auto flex-none" />
+          <span>
+            © {new Date().getFullYear()} {portfolio.profile.name}
+          </span>
         </p>
         <ul aria-label="Profiles" className="flex items-center">
           {socials.map((s) => (

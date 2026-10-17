@@ -161,3 +161,5 @@
   .dialog-panel[data-state='open'] { animation: panel-in 0.28s var(--ease-out-soft); }
   .dialog-panel[data-state='closed'] { animation: panel-out 0.15s ease-in; }
 }
+
+@keyframes log-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
