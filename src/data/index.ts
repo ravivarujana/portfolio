@@ -82,7 +82,8 @@ export type Portfolio = {
   learning: {
     title: string
     intro: string
-    tracks: { title: string; text: string; builds_on: string; tags: string[] }[]
+    /** status 'daily' = already part of my workflow; 'learning' = in progress */
+    tracks: { title: string; text: string; builds_on: string; status: 'daily' | 'learning'; tags: string[] }[]
   }
   photography: {
     title: string

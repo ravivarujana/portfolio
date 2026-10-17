@@ -8,7 +8,7 @@ export const NAV_ITEMS = [
   { id: 'experience', label: 'experience' },
   { id: 'work', label: 'work' },
   { id: 'stack', label: 'stack' },
-  { id: 'learning', label: 'ai/ml' },
+  { id: 'learning', label: 'ai' },
   ...(hasPhotos ? [{ id: 'photos', label: 'photos' }] : []),
   { id: 'contact', label: 'contact' },
 ]

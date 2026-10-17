@@ -129,11 +129,12 @@ export function Hero() {
 function WhoAmI() {
   const obj: Record<string, string | string[]> = {
     name: profile.name,
-    role: `${profile.rolePrefix} ${profile.role}`,
+    role: [profile.rolePrefix, profile.role].filter(Boolean).join(' '),
     experience: `${profile.yearsOfExperience} years`,
     current: `${profile.currentTitle} @ ${profile.currentCompany}`,
     focus: profile.focus,
-    learning: portfolio.learning.tracks.map((t) => t.tags[0]),
+    ai_tools: portfolio.learning.tracks.filter((t) => t.status === 'daily').flatMap((t) => t.tags),
+    learning: portfolio.learning.tracks.filter((t) => t.status === 'learning').map((t) => t.tags[0]),
     location: profile.location,
     open_to: profile.openTo,
   }
