@@ -2,7 +2,7 @@
   "meta": {
     "siteUrl": "",
     "title": "Ravi Varujana — Full-Stack Engineer",
-    "description": "Full-Stack Software Engineer with 4.5 years building Node.js/NestJS microservices, real-time systems, and payment, KYC and compliance workflows. Based in Bangalore, India."
+    "description": "Full-stack engineer with 4.5 years building Node.js/NestJS and Java/Spring Boot backends, real-time systems, and payment, KYC and compliance workflows, plus production React. Based in Bangalore, India."
   },
   "profile": {
     "name": "Ravi Varujana",
@@ -14,11 +14,11 @@
     "location": "Bangalore, India",
     "timezone": "IST · UTC+5:30",
     "yearsOfExperience": "4.5",
-    "intro": "Full-stack engineer (Node.js/NestJS, React, PostgreSQL) who owns systems end to end, and builds with AI tools like Claude Code and Cursor by default.",
+    "intro": "Full-stack engineer (Node.js/NestJS, Java/Spring Boot, React, PostgreSQL) who owns systems end to end, and builds with AI tools like Claude Code and Cursor by default.",
     "modes": [
       {
         "label": "0 → 1",
-        "text": "Building new systems from a blank page: a rule-driven bonus engine, a multi-level KYC pipeline, and a rules layer that checks every bet and deposit."
+        "text": "Building new systems from a blank page: a Java-based Kafka messaging layer, a rule-driven bonus engine, and a rules layer that checks every bet and deposit."
       },
       {
         "label": "1 → N",
@@ -28,9 +28,9 @@
     "focus": [
       "Node.js",
       "NestJS",
+      "Java / Spring Boot",
       "React",
       "PostgreSQL",
-      "Redis",
       "Kafka"
     ],
     "openTo": "Full-stack · Backend roles",
@@ -72,13 +72,13 @@
     "title": "I own what I build, and help the team build faster.",
     "paragraphs": [
       "From the data model and API to the integrations, background jobs and admin workflows people use to run it. I like problems where a manual process can become code, and where systems have to stay in sync without anyone checking.",
-      "At Gammastack I build backend services for a production iGaming platform: 3 independently deployed services on PostgreSQL and Redis, with Kafka streaming events to an external CRM. Around that sit payments, identity verification, a rules layer on every transaction, a bonus engine and background workers. Before that I built Node.js APIs and server-side payment validation for a US client's sales CRM at Qodic Technosoft.",
+      "At Gammastack I build the backend of a production iGaming platform: a Node.js modular monolith plus independently deployed Java and worker services on PostgreSQL and Redis, with a Java-based Kafka messaging layer for event-driven communication between modules and streaming to an external CRM. Around that sit payments, identity verification, a rules layer on every transaction, a bonus engine and background workers. Before that I built Java (Spring Boot) REST APIs and server-side payment validation for a US client's sales CRM at Qodic Technosoft.",
       "I care just as much about the team around a system. At Nagarro I reviewed code and mentored junior developers, and was promoted from Associate to Software Engineer; my Jest suites and Redocly docs reduced regressions and sped up third-party integrations. At Qodic, the payment component library I built is shared across client projects instead of rebuilt for each one."
     ],
     "focus": [
       {
         "title": "Integrations & system sync",
-        "text": "Third-party APIs (Veriff, Layer1) and Kafka event streaming that keeps an external CRM in sync."
+        "text": "Third-party APIs (Veriff, Layer1), duplicate-safe webhooks, and Kafka messaging that keeps modules and an external CRM in sync."
       },
       {
         "title": "Payments & verification",
@@ -107,21 +107,23 @@
       "location": "Bangalore, India",
       "current": true,
       "points": [
-        "Engineered **Node.js** backend services for a production iGaming platform spanning casino, sportsbook and real-time multiplayer features, running as 3 independently deployed services backed by PostgreSQL and Redis, with **Kafka** for event streaming to an external CRM.",
+        "Engineered the backend of a production iGaming platform (casino, sportsbook, real-time multiplayer) as a **Node.js** modular monolith plus independently deployed Java and worker services, on PostgreSQL and Redis.",
+        "Designed a **Java**-based **Apache Kafka** messaging layer integrated with the Node.js monolith, enabling asynchronous, event-driven communication between modules and event streaming to an external CRM.",
+        "Co-developed the **Java and Spring Boot** crypto payment service on **Layer1**, implementing duplicate-safe webhooks, exactly-once **Kafka** event delivery, and scheduled exchange-rate sync replacing manual updates.",
         "Reduced API latency by **70%+** on high-traffic endpoints via **PostgreSQL** query rewrites and targeted indexing.",
-        "Scaled **Socket.IO** horizontally across Node.js instances via the **Redis** adapter, removing a single point of failure.",
         "Built a server-side **Responsible Gambling** layer that intercepts every bet and deposit to enforce configurable bet and loss limits, session time caps and self-exclusion, meeting regulatory requirements.",
         "Implemented a multi-level **KYC** pipeline on **Veriff** APIs, automating identity and document verification with an admin approval and escalation workflow.",
-        "Integrated **Layer1** for multi-currency crypto payments, with scheduled exchange-rate sync replacing manual updates.",
         "Designed a rule-driven bonus engine unifying **5** reward types (joining, referral, deposit, cashback, wagering) behind one extensible workflow that also automates **VIP tier** progression from player activity.",
-        "Moved ad-hoc scripts into an independently deployed **Bull (Redis)** worker with retries and Bull Board monitoring."
+        "Moved ad-hoc scripts into an independently deployed **Bull (Redis)** worker with retries and Bull Board monitoring.",
+        "Scaled **Socket.IO** horizontally across Node.js instances via the **Redis** adapter, removing a single point of failure."
       ],
       "stack": [
         "Node.js",
-        "NestJS",
+        "Java",
+        "Spring Boot",
+        "Kafka",
         "PostgreSQL",
         "Redis",
-        "Kafka",
         "Bull",
         "Socket.IO",
         "Veriff",
@@ -137,14 +139,16 @@
       "location": "Remote",
       "current": false,
       "points": [
-        "Built **Node.js** REST APIs for a custom sales CRM (US client), covering user management and activity tracking.",
+        "Built **Java (Spring Boot)** REST APIs for a custom sales CRM (US client), covering user management and activity tracking, with a persistence layer on **Spring Data JPA** and **Hibernate**.",
         "Enforced transaction limits and server-side validation on offer purchases, rejecting invalid payments before processing.",
         "Built a reusable payment UI component library (**React**, **Tailwind CSS**, lazy loading) shared across client projects.",
         "Migrated a legacy **React** codebase from class components to functional components and hooks."
       ],
       "stack": [
-        "Node.js",
-        "REST APIs",
+        "Java",
+        "Spring Boot",
+        "Spring Data JPA",
+        "Hibernate",
         "React",
         "Tailwind CSS"
       ]
@@ -218,34 +222,73 @@
     },
     {
       "id": "kafka-crm-sync",
-      "tag": "Integrations",
-      "title": "Event streaming to an external CRM",
-      "summary": "Kafka streams events from the platform's services to an external CRM, so customer data stays in sync across systems without manual exports.",
+      "tag": "Event-driven",
+      "title": "Kafka messaging layer",
+      "summary": "A Java-based Kafka messaging layer integrated with the Node.js monolith, for asynchronous, event-driven communication between modules and event streaming to an external CRM.",
       "flow": [
-        "platform services",
-        "kafka",
-        "external crm"
+        "node.js modules",
+        "kafka (java)",
+        "modules · crm"
       ],
       "stack": [
         "Kafka",
+        "Java",
         "Node.js",
-        "PostgreSQL",
-        "Redis"
+        "PostgreSQL"
       ],
       "details": [
         {
           "heading": "Context",
-          "body": "A production iGaming platform running as 3 independently deployed services on PostgreSQL and Redis, with an external CRM that needed the same customer events."
+          "body": "A production iGaming platform built as a Node.js modular monolith plus independently deployed Java and worker services, with an external CRM that needed the same events."
         },
         {
           "heading": "What I did",
           "points": [
-            "Streamed platform events to the external CRM through Kafka."
+            "Designed a Java-based Apache Kafka messaging layer and integrated it with the Node.js monolith.",
+            "Used it for asynchronous, event-driven communication between modules.",
+            "Streamed events to the external CRM over the same layer."
           ]
         },
         {
           "heading": "Outcome",
-          "body": "The CRM stays in sync with the platform without manual exports."
+          "body": "Modules communicate through events instead of direct calls, and the CRM stays in sync without manual exports."
+        }
+      ]
+    },
+    {
+      "id": "crypto-payments",
+      "tag": "Payments",
+      "title": "Crypto payment service",
+      "summary": "Co-developed a Java/Spring Boot payment service on Layer1 with duplicate-safe webhooks, exactly-once Kafka event delivery and scheduled exchange-rate sync.",
+      "flow": [
+        "layer1 webhook",
+        "dedupe",
+        "kafka (exactly-once)",
+        "wallet"
+      ],
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "Layer1"
+      ],
+      "details": [
+        {
+          "heading": "Context",
+          "body": "Multi-currency crypto payments for a production iGaming platform, where a payment processed twice means real money lost."
+        },
+        {
+          "heading": "What I did",
+          "points": [
+            "Co-developed the Java and Spring Boot payment service on Layer1.",
+            "Made webhook handling duplicate-safe, so a webhook delivered more than once is only processed once.",
+            "Delivered payment events through Kafka with exactly-once semantics.",
+            "Added a scheduled exchange-rate sync that replaced manual updates."
+          ]
+        },
+        {
+          "heading": "Outcome",
+          "body": "Payment events processed once even when webhooks are retried, and exchange rates that stay current on their own."
         }
       ]
     },
@@ -274,34 +317,6 @@
         {
           "heading": "Outcome",
           "body": "Automated verification with a clear path for manual review."
-        }
-      ]
-    },
-    {
-      "id": "crypto-payments",
-      "tag": "Payments",
-      "title": "Multi-currency crypto payments",
-      "summary": "Layer1 integration for multi-currency crypto payments, with scheduled exchange-rate sync replacing manual updates.",
-      "flow": [
-        "layer1",
-        "fx sync job",
-        "wallet"
-      ],
-      "stack": [
-        "Layer1",
-        "Scheduled jobs"
-      ],
-      "details": [
-        {
-          "heading": "What I did",
-          "points": [
-            "Integrated Layer1 for multi-currency crypto payments.",
-            "Added a scheduled job that syncs exchange rates."
-          ]
-        },
-        {
-          "heading": "Outcome",
-          "body": "Exchange rates stay current without manual updates."
         }
       ]
     },
@@ -504,11 +519,13 @@
       "items": [
         "TypeScript",
         "JavaScript",
+        "Java",
         "SQL",
         "Python"
       ],
       "key": [
         "TypeScript",
+        "Java",
         "SQL"
       ]
     },
@@ -518,25 +535,26 @@
         "Node.js",
         "NestJS",
         "Express",
+        "Spring Boot",
         "Microservices",
         "REST",
         "Socket.IO",
         "Bull/Redis queues",
-        "GraphQL",
         "Apache Kafka"
       ],
       "key": [
         "Node.js",
         "NestJS",
+        "Spring Boot",
         "Microservices",
-        "Bull/Redis queues"
+        "Bull/Redis queues",
+        "Apache Kafka"
       ]
     },
     {
       "group": "Frontend",
       "items": [
         "React",
-        "Next.js",
         "Redux",
         "Tailwind CSS",
         "Storybook",
@@ -555,6 +573,8 @@
         "MongoDB",
         "Prisma",
         "Sequelize",
+        "Spring Data JPA",
+        "Hibernate",
         "Query Optimization"
       ],
       "key": [
@@ -577,15 +597,17 @@
       ]
     },
     {
-      "group": "Infra",
+      "group": "Infra & Testing",
       "items": [
         "AWS EC2",
         "AWS ECS",
-        "AWS CodeDeploy",
+        "AWS ECR",
         "AWS S3",
         "AWS Lambda",
         "Docker",
-        "Kubernetes"
+        "Kubernetes",
+        "Jest",
+        "Git"
       ],
       "key": [
         "AWS S3",
